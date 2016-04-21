@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Buildings>
+
+	<ThingDef>
+		<defName>Building_RTMagneticShield</defName>
+		<label>magnetic shield</label>
+		<description>Automatically switches on to protect the entire colony from a solar flare; tremendous power drain and considerable heating when operational.</description>
+		<designationCategory>Power</designationCategory>
+		<tickerType>Normal</tickerType>
+
+		<category>Building</category>
+		<thingClass>Building</thingClass>
+
+		<graphicData>
+			<texPath>RT_Buildings/Building_RTMagneticShield</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+			<damageData>
+				<rect>(0.3, 0.3, 1.2, 1.2)</rect>
+			</damageData>
+		</graphicData>
+		<uiIconPath>RT_UI/Building_RTMagneticShield_UI</uiIconPath>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<repairEffect>Repair</repairEffect>
+		<constructEffect>ConstructMetal</constructEffect>
+		<soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+		<filthLeaving>BuildingRubble</filthLeaving>
+		<castEdgeShadows>false</castEdgeShadows>
+
+		<size>(2,2)</size>
+		<researchPrerequisites>
+			<li>ResearchProject_RTMagneticShield</li>
+		</researchPrerequisites>
+		<leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<altitudeLayer>Waist</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<building>
+			<ignoreNeedsPower>True</ignoreNeedsPower>
+		</building>
+		<selectable>True</selectable>
+		<rotatable>False</rotatable>
+		<fillPercent>0.30</fillPercent>
+		<pathCost>50</pathCost>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToMake>500</WorkToMake>
+			<Flammability>1.0</Flammability>
+			<Beauty>-10</Beauty>
+		</statBases>
+		<costList>
+			<Steel>100</Steel>
+			<Components>10</Components>
+			<Plasteel>50</Plasteel>
+		</costList>
+
+		<comps>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
+				<shortCircuitInRain>True</shortCircuitInRain>
+				<startElectricalFires>True</startElectricalFires>
+				<soundPowerOn>PowerOnSmall</soundPowerOn>
+				<soundPowerOff>PowerOffSmall</soundPowerOff>
+			</li>
+			<li Class="CompProperties_Flickable" />
+			<li Class="RT_SolarFlareShield.CompProperties_RTSolarFlareShield">
+				<shieldingPowerDrain>25000</shieldingPowerDrain>
+				<heatingPerTick>0.2</heatingPerTick>
+				<rotatorPath>RT_Buildings/Building_RTMagneticShield_Top</rotatorPath>
+				<rotatorSpeedIdle>0.5</rotatorSpeedIdle>
+				<rotatorSpeedActive>20.0</rotatorSpeedActive>
+			</li>
+			<li Class="CompProperties_Breakdownable"/>
+		</comps>
+		<placeWorkers>
+			<li>RT_SolarFlareShield.PlaceWorker_RTOnlyOneShieldOnMap</li>
+		</placeWorkers>
+	</ThingDef>
+
+</Buildings>
