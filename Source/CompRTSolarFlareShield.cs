@@ -71,8 +71,6 @@ namespace RT_SolarFlareShield
 			}
 
 			rotatorTexture = MaterialPool.MatFrom(rotatorPath, ShaderDatabase.Cutout);
-
-			PlaceWorker_RTOnlyOneShieldOnMap.shieldWasPlaced = true;
 		}
 
 		public override void PostDeSpawn()
@@ -87,8 +85,6 @@ namespace RT_SolarFlareShield
 				DefDatabase<IncidentDef>.ResolveAllReferences();
 				Log.Message("RT_SolarFlareShield: restored MapCondition for SolarFlare.");
 			}
-
-			PlaceWorker_RTOnlyOneShieldOnMap.shieldWasPlaced = false;
 
 			MapCondition mapCondition = Find.MapConditionManager.GetActiveCondition(
 				DefDatabase<MapConditionDef>.GetNamed("MapCondition_RTSolarFlare"));
@@ -109,11 +105,6 @@ namespace RT_SolarFlareShield
 		public override void CompTick()
 		{
 			SolarFlareShieldTick(1);
-		}
-
-		public override void CompTickRare()
-		{
-			SolarFlareShieldTick(250);
 		}
 
 		public override void PostDraw()
