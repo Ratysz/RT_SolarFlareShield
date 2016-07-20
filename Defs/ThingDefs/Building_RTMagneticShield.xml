@@ -33,7 +33,7 @@
 		</researchPrerequisites>
 		<leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
 		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-		<altitudeLayer>Waist</altitudeLayer>
+		<altitudeLayer>Building</altitudeLayer>
 		<passability>PassThroughOnly</passability>
 		<building>
 			<ignoreNeedsPower>True</ignoreNeedsPower>
@@ -50,7 +50,7 @@
 		</statBases>
 		<costList>
 			<Steel>100</Steel>
-			<Components>10</Components>
+			<Component>10</Component>
 			<Plasteel>50</Plasteel>
 		</costList>
 
