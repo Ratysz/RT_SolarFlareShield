@@ -67,7 +67,6 @@
 			<li Class="RT_SolarFlareShield.CompProperties_RTSolarFlareShield">
 				<shieldingPowerDrain>25000</shieldingPowerDrain>
 				<heatingPerTick>0.2</heatingPerTick>
-				<rotatorPath>RT_Buildings/Building_RTMagneticShield_Top</rotatorPath>
 				<rotatorSpeedIdle>0.5</rotatorSpeedIdle>
 				<rotatorSpeedActive>20.0</rotatorSpeedActive>
 			</li>

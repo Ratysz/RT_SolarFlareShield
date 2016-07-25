@@ -46,16 +46,8 @@ namespace RT_SolarFlareShield
 				return properties.rotatorSpeedIdle;
 			}
 		}
-		public string rotatorPath
-		{
-			get
-			{
-				return properties.rotatorPath;
-			}
-		}
 
 		private float rotatorAngle = (float)Rand.Range(0, 360);
-		private Material rotatorTexture;
 
 		public override void PostSpawnSetup()
 		{
@@ -69,8 +61,6 @@ namespace RT_SolarFlareShield
 				DefDatabase<IncidentDef>.ResolveAllReferences();
 				Log.Message("RT_SolarFlareShield: replaced MapCondition for SolarFlare.");
 			}
-
-			rotatorTexture = MaterialPool.MatFrom(rotatorPath, ShaderDatabase.Cutout);
 		}
 
 		public override void PostDeSpawn()
@@ -116,7 +106,7 @@ namespace RT_SolarFlareShield
 				parent.DrawPos + Altitudes.AltIncVect,
 				Quaternion.AngleAxis(rotatorAngle, Vector3.up),
 				vector);
-			Graphics.DrawMesh(MeshPool.plane10, matrix, rotatorTexture, 0);
+			Graphics.DrawMesh(MeshPool.plane10, matrix, Resources.rotatorTexture, 0);
 		}
 
 		private void SolarFlareShieldTick(int tickAmount)
