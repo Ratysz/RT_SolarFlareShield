@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MapCondition_RTSolarFlare.label>太陽閃焰（已屏蔽）</MapCondition_RTSolarFlare.label>
+  <MapCondition_RTSolarFlare.endMessage>磁力屏障已關閉。</MapCondition_RTSolarFlare.endMessage>
+  <MapCondition_RTSolarFlare.description>一場太陽耀斑正在衝擊這個星球，這會對電器設備產生極大的影響並讓絕大多數電器設備無法運轉。</MapCondition_RTSolarFlare.description>
+
+
+</LanguageData>

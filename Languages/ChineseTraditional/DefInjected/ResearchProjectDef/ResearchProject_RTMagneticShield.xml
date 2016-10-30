@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <ResearchProject_RTMagneticShield.label>太陽閃焰屏障</ResearchProject_RTMagneticShield.label>
+  <ResearchProject_RTMagneticShield.description>解鎖建造「磁力屏障」，用於在太陽閃焰發生時保護整片殖民地的電器設備。
+		
+空閒時，屏障只需要少量電力以維持檢測電路的運行，以便太陽閃焰發生時及時啟動。啟動後，屏障的電力消耗提升至25000W，並在本地區上空形成一片磁力層，抵消太陽閃焰對殖民地電器設備的影響。屏障的有效保護範圍足以覆蓋整片殖民地。
+
+由太陽閃焰引發的過量電磁波動雖然被屏障消減了大部分，但仍然會對敏感的設備造成干擾，比如無法使用通訊台。</ResearchProject_RTMagneticShield.description>
+
+
+</LanguageData>

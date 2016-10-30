@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <ResearchProject_RTMagneticShield.label>太阳耀斑屏障</ResearchProject_RTMagneticShield.label>
+  <ResearchProject_RTMagneticShield.description>解锁建造「磁力屏障」，用于在太阳耀斑发生时保护整片殖民地的电气设备。
+		
+空闲时，屏障只需要少量电力以维持检测电路的运行，以便太阳耀斑发生时及时启动。启动后，屏障的电力消耗提升至25000W，并在本地区上空形成一片磁力层，抵消太阳耀斑对殖民地电气设备的影响。屏障的有效保护范围足以覆盖整片殖民地。
+
+由太阳耀斑引发的过量电磁波动虽然被屏障消减了大部分，但仍然会对敏感的设备造成干扰，比如无法使用通讯台。</ResearchProject_RTMagneticShield.description>
+
+
+</LanguageData>
