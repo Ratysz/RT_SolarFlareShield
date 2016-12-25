@@ -63,9 +63,9 @@ namespace RT_SolarFlareShield
 			}
 		}
 
-		public override void PostDeSpawn()
+		public override void PostDeSpawn(Map map)
 		{
-			base.PostDeSpawn();
+			base.PostDeSpawn(map);
 
 			IncidentDef incidentDef = DefDatabase<IncidentDef>.GetNamed("SolarFlare");
 			MapConditionDef mapConditionDef = DefDatabase<MapConditionDef>.GetNamed("SolarFlare");
@@ -76,13 +76,13 @@ namespace RT_SolarFlareShield
 				Log.Message("RT_SolarFlareShield: restored MapCondition for SolarFlare.");
 			}
 
-			MapCondition mapCondition = Find.MapConditionManager.GetActiveCondition(
+			MapCondition mapCondition = parent.Map.mapConditionManager.GetActiveCondition(
 				DefDatabase<MapConditionDef>.GetNamed("MapCondition_RTSolarFlare"));
 			if (mapCondition != null)
 			{
 				int ticksToExpire = mapCondition.TicksLeft;
 				mapCondition.duration = mapCondition.TicksPassed - 1;
-				Find.MapConditionManager.RegisterCondition(MapConditionMaker.MakeCondition(
+				parent.Map.mapConditionManager.RegisterCondition(MapConditionMaker.MakeCondition(
 					MapConditionDefOf.SolarFlare, ticksToExpire));
 			}
 		}
@@ -113,7 +113,7 @@ namespace RT_SolarFlareShield
 		{
 			if ((Find.TickManager.TicksGame) % tickAmount == 0)
 			{
-				MapCondition mapCondition = Find.MapConditionManager.GetActiveCondition(
+				MapCondition mapCondition = parent.Map.mapConditionManager.GetActiveCondition(
 					DefDatabase<MapConditionDef>.GetNamed("MapCondition_RTSolarFlare"));
 				CompPowerTrader compPowerTrader = parent.TryGetComp<CompPowerTrader>();
 				if (compPowerTrader != null && compPowerTrader.PowerOn)
@@ -127,7 +127,7 @@ namespace RT_SolarFlareShield
 						{
 							room.Temperature += heatingPerTick;
 						}
-						List<Building_CommsConsole> commsConsoles = Find.ListerBuildings.AllBuildingsColonistOfClass<Building_CommsConsole>().ToList();
+						List<Building_CommsConsole> commsConsoles = parent.Map.listerBuildings.AllBuildingsColonistOfClass<Building_CommsConsole>().ToList();
 						foreach (Building_CommsConsole commsConsole in commsConsoles)
 						{
 							CompPowerTrader consoleCompPowerTrader = commsConsole.TryGetComp<CompPowerTrader>();
@@ -148,7 +148,7 @@ namespace RT_SolarFlareShield
 				{
 					int ticksToExpire = mapCondition.TicksLeft;
 					mapCondition.duration = mapCondition.TicksPassed - 1;
-					Find.MapConditionManager.RegisterCondition(MapConditionMaker.MakeCondition(
+					parent.Map.mapConditionManager.RegisterCondition(MapConditionMaker.MakeCondition(
 						MapConditionDefOf.SolarFlare, ticksToExpire));
 				}
 			}

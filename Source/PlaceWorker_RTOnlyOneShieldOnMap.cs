@@ -11,9 +11,9 @@ namespace RT_SolarFlareShield
 {
 	public class PlaceWorker_RTOnlyOneShieldOnMap : PlaceWorker
 	{
-		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot)
+		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Thing thingToIgnore = null)
 		{
-			foreach (Building building in Find.ListerBuildings.allBuildingsColonist)
+			foreach (Building building in Map.listerBuildings.allBuildingsColonist)
 			{
 				if (building.TryGetComp<CompRTSolarFlareShield>() != null)
 				{
