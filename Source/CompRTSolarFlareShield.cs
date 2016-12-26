@@ -63,30 +63,6 @@ namespace RT_SolarFlareShield
 			}
 		}
 
-		public override void PostDeSpawn(Map map)
-		{
-			base.PostDeSpawn(map);
-
-			IncidentDef incidentDef = DefDatabase<IncidentDef>.GetNamed("SolarFlare");
-			MapConditionDef mapConditionDef = DefDatabase<MapConditionDef>.GetNamed("SolarFlare");
-			if (incidentDef.mapCondition != mapConditionDef)
-			{
-				incidentDef.mapCondition = mapConditionDef;
-				DefDatabase<IncidentDef>.ResolveAllReferences();
-				Log.Message("RT_SolarFlareShield: restored MapCondition for SolarFlare.");
-			}
-
-			MapCondition mapCondition = parent.Map.mapConditionManager.GetActiveCondition(
-				DefDatabase<MapConditionDef>.GetNamed("MapCondition_RTSolarFlare"));
-			if (mapCondition != null)
-			{
-				int ticksToExpire = mapCondition.TicksLeft;
-				mapCondition.duration = mapCondition.TicksPassed - 1;
-				parent.Map.mapConditionManager.RegisterCondition(MapConditionMaker.MakeCondition(
-					MapConditionDefOf.SolarFlare, ticksToExpire));
-			}
-		}
-
 		public override string CompInspectStringExtra()
 		{
 			return "CompRTSolarFlareShield_FlareProtection".Translate();
@@ -127,15 +103,6 @@ namespace RT_SolarFlareShield
 						{
 							room.Temperature += heatingPerTick;
 						}
-						List<Building_CommsConsole> commsConsoles = parent.Map.listerBuildings.AllBuildingsColonistOfClass<Building_CommsConsole>().ToList();
-						foreach (Building_CommsConsole commsConsole in commsConsoles)
-						{
-							CompPowerTrader consoleCompPowerTrader = commsConsole.TryGetComp<CompPowerTrader>();
-							if (consoleCompPowerTrader != null)
-							{
-								consoleCompPowerTrader.PowerOn = false;
-							}
-						}
 					}
 					else
 					{
@@ -143,13 +110,6 @@ namespace RT_SolarFlareShield
 							.GetCompProperties<CompProperties_Power>().basePowerConsumption;
 						rotatorAngle += rotatorSpeedIdle * tickAmount;
 					}
-				}
-				else if (mapCondition != null)
-				{
-					int ticksToExpire = mapCondition.TicksLeft;
-					mapCondition.duration = mapCondition.TicksPassed - 1;
-					parent.Map.mapConditionManager.RegisterCondition(MapConditionMaker.MakeCondition(
-						MapConditionDefOf.SolarFlare, ticksToExpire));
 				}
 			}
 		}
