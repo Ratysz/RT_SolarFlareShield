@@ -53,6 +53,7 @@ namespace RT_SolarFlareShield
 			else
 			{
 				Messages.Message(MapConditionDefOf.SolarFlare.endMessage, MessageSound.Standard);
+				mapConditionManager.ActiveConditions.Remove(this);
 			}
 		}
 
