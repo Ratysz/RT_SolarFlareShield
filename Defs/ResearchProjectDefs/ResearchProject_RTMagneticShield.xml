@@ -12,6 +12,9 @@ Eeven reduced by the shield, excessive electromagnetic fluctuations caused by th
 		<baseCost>1000</baseCost>
 		<techLevel>Spacer</techLevel>
 		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<prerequisites>
+			<li>MicroelectronicsBasics</li>
+		</prerequisites>
 	</ResearchProjectDef>
 
 </ResearchProjectDefs>
