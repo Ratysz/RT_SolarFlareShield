@@ -46,21 +46,20 @@ namespace RT_SolarFlareShield
 				return properties.rotatorSpeedIdle;
 			}
 		}
-
+		
+		private CompPowerTrader compPowerTrader;
 		private float rotatorAngle = (float)Rand.Range(0, 360);
+		private int timerTicks = 300;
 
-		public override void PostSpawnSetup()
+		public override void PostSpawnSetup(bool respawningAfterLoad)
 		{
-			base.PostSpawnSetup();
-
-			IncidentDef incidentDef = DefDatabase<IncidentDef>.GetNamed("SolarFlare");
-			MapConditionDef mapConditionDef = DefDatabase<MapConditionDef>.GetNamed("MapCondition_RTSolarFlare");
-			if (incidentDef.mapCondition != mapConditionDef)
+			base.PostSpawnSetup(respawningAfterLoad);
+			compPowerTrader = parent.TryGetComp<CompPowerTrader>();
+			if (compPowerTrader == null)
 			{
-				incidentDef.mapCondition = mapConditionDef;
-				DefDatabase<IncidentDef>.ResolveAllReferences();
-				Log.Message("RT_SolarFlareShield: replaced MapCondition for SolarFlare.");
+				Log.Error("[RT Solar Flare Shield]: Could not get CompPowerTrader of " + parent);
 			}
+			timerTicks = 300;
 		}
 
 		public override string CompInspectStringExtra()
@@ -70,6 +69,20 @@ namespace RT_SolarFlareShield
 
 		public override void CompTick()
 		{
+			if (timerTicks > 0)
+			{
+				timerTicks--;
+			}
+			else if (timerTicks == 0)
+			{
+				timerTicks = -10;
+				IncidentParms incidentParms =
+					StorytellerUtility.DefaultParmsNow(
+						Find.Storyteller.def,
+						IncidentCategory.ThreatSmall,
+						Find.World);
+				IncidentDefOf.SolarFlare.Worker.TryExecute(incidentParms);
+			}
 			SolarFlareShieldTick(1);
 		}
 
@@ -89,25 +102,23 @@ namespace RT_SolarFlareShield
 		{
 			if ((Find.TickManager.TicksGame) % tickAmount == 0)
 			{
-				MapCondition mapCondition = parent.Map.mapConditionManager.GetActiveCondition(
-					DefDatabase<MapConditionDef>.GetNamed("MapCondition_RTSolarFlare"));
-				CompPowerTrader compPowerTrader = parent.TryGetComp<CompPowerTrader>();
 				if (compPowerTrader != null && compPowerTrader.PowerOn)
 				{
-					if (mapCondition != null)
+					GameCondition gameCondition =
+						Find.World.GameConditionManager.GetActiveCondition(GameConditionDefOf.SolarFlare);
+					if (gameCondition != null)
 					{
 						compPowerTrader.PowerOutput = -shieldingPowerDrain;
 						rotatorAngle += rotatorSpeedActive * tickAmount;
-						Room room = parent.GetRoom();
-						if (room != null && !room.UsesOutdoorTemperature)
+						RoomGroup roomGroup = parent.GetRoomGroup();
+						if (roomGroup != null && !roomGroup.UsesOutdoorTemperature)
 						{
-							room.Temperature += heatingPerTick;
+							roomGroup.Temperature += heatingPerTick * tickAmount;
 						}
 					}
 					else
 					{
-						compPowerTrader.PowerOutput = -parent.def
-							.GetCompProperties<CompProperties_Power>().basePowerConsumption;
+						compPowerTrader.PowerOutput = -compPowerTrader.Props.basePowerConsumption;
 						rotatorAngle += rotatorSpeedIdle * tickAmount;
 					}
 				}
