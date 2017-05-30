@@ -15,6 +15,9 @@ Eeven reduced by the shield, excessive electromagnetic fluctuations caused by th
 		<prerequisites>
 			<li>MicroelectronicsBasics</li>
 		</prerequisites>
+		<tab>RTMods</tab>
+		<researchViewX>3</researchViewX>
+		<researchViewY>0</researchViewY>
 	</ResearchProjectDef>
 
 </ResearchProjectDefs>
