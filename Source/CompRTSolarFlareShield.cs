@@ -49,7 +49,6 @@ namespace RT_SolarFlareShield
 		
 		private CompPowerTrader compPowerTrader;
 		private float rotatorAngle = (float)Rand.Range(0, 360);
-		private int timerTicks = 300;
 
 		public override void PostSpawnSetup(bool respawningAfterLoad)
 		{
@@ -59,7 +58,6 @@ namespace RT_SolarFlareShield
 			{
 				Log.Error("[RT Solar Flare Shield]: Could not get CompPowerTrader of " + parent);
 			}
-			timerTicks = 300;
 		}
 
 		public override string CompInspectStringExtra()
@@ -69,20 +67,6 @@ namespace RT_SolarFlareShield
 
 		public override void CompTick()
 		{
-			if (timerTicks > 0)
-			{
-				timerTicks--;
-			}
-			else if (timerTicks == 0)
-			{
-				timerTicks = -10;
-				IncidentParms incidentParms =
-					StorytellerUtility.DefaultParmsNow(
-						Find.Storyteller.def,
-						IncidentCategory.ThreatSmall,
-						Find.World);
-				IncidentDefOf.SolarFlare.Worker.TryExecute(incidentParms);
-			}
 			SolarFlareShieldTick(1);
 		}
 
