@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<Building_RTMagneticShield.label>Escudo magnético</Building_RTMagneticShield.label>
+	<Building_RTMagneticShield.description>Se activa automáticamente para proteger a toda la colonia de una llamarada solar. Causa un enorme consumo de energía y un calor considerable al activarse.</Building_RTMagneticShield.description>
+
+</LanguageData>
