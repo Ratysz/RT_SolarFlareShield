@@ -13,12 +13,9 @@ namespace RT_SolarFlareShield
 	{
 		public override AcceptanceReport AllowsPlacing(BuildableDef checkingDef, IntVec3 loc, Rot4 rot, Thing thingToIgnore = null)
 		{
-			foreach (Building building in Map.listerBuildings.allBuildingsColonist)
+			if (Map.GetShieldCoordinator().hasAnyShield)
 			{
-				if (building.TryGetComp<CompRTSolarFlareShield>() != null)
-				{
-					return "PlaceWorker_RTOnlyOneShieldOnMap".Translate();
-				}
+				return "PlaceWorker_RTOnlyOneShieldOnMap".Translate();
 			}
 			return true;
 		}

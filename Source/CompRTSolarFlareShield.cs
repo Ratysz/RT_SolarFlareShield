@@ -9,45 +9,31 @@ using RimWorld;
 
 namespace RT_SolarFlareShield
 {
+	public class CompProperties_RTSolarFlareShield : CompProperties
+	{
+		public float shieldingPowerDrain = 0.0f;
+		public float heatingPerTick = 0.0f;
+		public float rotatorSpeedActive = 10.0f;
+		public float rotatorSpeedIdle = 0.5f;
+
+		public CompProperties_RTSolarFlareShield()
+		{
+			compClass = typeof(CompRTSolarFlareShield);
+		}
+	}
+
 	public class CompRTSolarFlareShield : ThingComp
 	{
-		private CompProperties_RTSolarFlareShield properties
+		public CompProperties_RTSolarFlareShield properties
 		{
 			get
 			{
 				return (CompProperties_RTSolarFlareShield)props;
 			}
 		}
-		public float shieldingPowerDrain
-		{
-			get
-			{
-				return properties.shieldingPowerDrain;
-			}
-		}
-		public float heatingPerTick
-		{
-			get
-			{
-				return properties.heatingPerTick;
-			}
-		}
-		public float rotatorSpeedActive
-		{
-			get
-			{
-				return properties.rotatorSpeedActive;
-			}
-		}
-		public float rotatorSpeedIdle
-		{
-			get
-			{
-				return properties.rotatorSpeedIdle;
-			}
-		}
 		
 		private CompPowerTrader compPowerTrader;
+		private MapComponent_ShieldCoordinator coordinator;
 		private float rotatorAngle = (float)Rand.Range(0, 360);
 
 		public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -58,6 +44,15 @@ namespace RT_SolarFlareShield
 			{
 				Log.Error("[RT Solar Flare Shield]: Could not get CompPowerTrader of " + parent);
 			}
+			coordinator = parent.Map.GetShieldCoordinator();
+			coordinator.hasAnyShield = true;
+		}
+
+		public override void PostDeSpawn(Map map)
+		{
+			coordinator.hasAnyShield = false;
+			coordinator.hasActiveShield = false;
+			base.PostDeSpawn(map);
 		}
 
 		public override string CompInspectStringExtra()
@@ -86,25 +81,45 @@ namespace RT_SolarFlareShield
 		{
 			if ((Find.TickManager.TicksGame) % tickAmount == 0)
 			{
-				if (compPowerTrader != null && compPowerTrader.PowerOn)
+				if (compPowerTrader == null || compPowerTrader.PowerOn)
 				{
+					coordinator.hasActiveShield = true;
 					GameCondition gameCondition =
 						Find.World.GameConditionManager.GetActiveCondition(GameConditionDefOf.SolarFlare);
 					if (gameCondition != null)
 					{
-						compPowerTrader.PowerOutput = -shieldingPowerDrain;
-						rotatorAngle += rotatorSpeedActive * tickAmount;
+						compPowerTrader.PowerOutput = -properties.shieldingPowerDrain;
+						rotatorAngle += properties.rotatorSpeedActive * tickAmount;
 						RoomGroup roomGroup = parent.GetRoomGroup();
 						if (roomGroup != null && !roomGroup.UsesOutdoorTemperature)
 						{
-							roomGroup.Temperature += heatingPerTick * tickAmount;
+							roomGroup.Temperature += properties.heatingPerTick * tickAmount;
+						}
+						if ((Find.TickManager.TicksGame) % (5 * tickAmount) == 0)
+						{
+							foreach (Building building in parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
+							{
+								Building_CommsConsole console = building as Building_CommsConsole;
+								if (console != null)
+								{
+									CompPowerTrader consoleCompPowerTrader = console.TryGetComp<CompPowerTrader>();
+									if (consoleCompPowerTrader != null)
+									{
+										consoleCompPowerTrader.PowerOn = false;
+									}
+								}
+							}
 						}
 					}
 					else
 					{
 						compPowerTrader.PowerOutput = -compPowerTrader.Props.basePowerConsumption;
-						rotatorAngle += rotatorSpeedIdle * tickAmount;
+						rotatorAngle += properties.rotatorSpeedIdle * tickAmount;
 					}
+				}
+				else
+				{
+					coordinator.hasActiveShield = false;
 				}
 			}
 		}
