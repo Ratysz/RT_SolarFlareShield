@@ -10,6 +10,10 @@
 
 		<category>Building</category>
 		<thingClass>Building</thingClass>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<thingCategories>
+			<li>BuildingsPower</li>
+		</thingCategories>
 
 		<graphicData>
 			<texPath>RT_Buildings/Building_RTMagneticShield</texPath>
@@ -23,8 +27,8 @@
 		<drawerType>MapMeshAndRealTime</drawerType>
 		<repairEffect>Repair</repairEffect>
 		<constructEffect>ConstructMetal</constructEffect>
-		<soundImpactDefault>BulletImpactMetal</soundImpactDefault>
-		<filthLeaving>BuildingRubble</filthLeaving>
+		<soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+		<filthLeaving>Filth_RubbleBuilding</filthLeaving>
 		<castEdgeShadows>false</castEdgeShadows>
 
 		<size>(2,2)</size>
@@ -44,10 +48,11 @@
 			<WorkToBuild>5000</WorkToBuild>
 			<Flammability>1.0</Flammability>
 			<Beauty>-10</Beauty>
+			<Mass>70</Mass>
 		</statBases>
 		<costList>
 			<Steel>100</Steel>
-			<Component>10</Component>
+			<ComponentIndustrial>10</ComponentIndustrial>
 			<Plasteel>50</Plasteel>
 		</costList>
 
@@ -56,7 +61,6 @@
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>50</basePowerConsumption>
 				<shortCircuitInRain>True</shortCircuitInRain>
-				<startElectricalFires>True</startElectricalFires>
 				<soundPowerOn>PowerOnSmall</soundPowerOn>
 				<soundPowerOff>PowerOffSmall</soundPowerOff>
 			</li>

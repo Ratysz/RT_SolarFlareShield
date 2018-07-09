@@ -27,7 +27,7 @@ namespace RT_SolarFlareShield
 			bool result = instance.ConditionIsActive(def);
 			if (result && def == GameConditionDefOf.SolarFlare)
 			{
-				return !instance.map.GetShieldCoordinator().hasActiveShield;
+				return !instance.ownerMap.GetShieldCoordinator().hasActiveShield;
 			}
 			return result;
 		}
