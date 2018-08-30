@@ -97,10 +97,9 @@ namespace RT_SolarFlareShield
 						}
 						if ((Find.TickManager.TicksGame) % (5 * tickAmount) == 0)
 						{
-							foreach (Building building in parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
+							foreach (Thing building in parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
 							{
-								Building_CommsConsole console = building as Building_CommsConsole;
-								if (console != null)
+								if (building is Building_CommsConsole console)
 								{
 									CompPowerTrader consoleCompPowerTrader = console.TryGetComp<CompPowerTrader>();
 									if (consoleCompPowerTrader != null)

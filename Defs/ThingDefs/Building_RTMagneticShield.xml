@@ -61,8 +61,8 @@
 				<compClass>CompPowerTrader</compClass>
 				<basePowerConsumption>50</basePowerConsumption>
 				<shortCircuitInRain>True</shortCircuitInRain>
-				<soundPowerOn>PowerOnSmall</soundPowerOn>
-				<soundPowerOff>PowerOffSmall</soundPowerOff>
+				<soundPowerOn>Power_OnSmall</soundPowerOn>
+				<soundPowerOff>Power_OffSmall</soundPowerOff>
 			</li>
 			<li Class="CompProperties_Flickable" />
 			<li Class="RT_SolarFlareShield.CompProperties_RTSolarFlareShield">
