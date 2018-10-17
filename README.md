@@ -1,2 +1,2 @@
 # RT_SolarFlareShield
-RimWorld mod; implements a magnetic shield to mitigate the solar flare incident.
+RimWorld mod; see [About.xml](../master/About/About.xml) and [forum thread](https://ludeon.com/forums/index.php?topic=11272).
