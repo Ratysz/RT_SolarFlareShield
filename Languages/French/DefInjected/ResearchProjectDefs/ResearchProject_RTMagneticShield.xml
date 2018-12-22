@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<ResearchProject_RTMagneticShield.label>protection éruptions solaires</ResearchProject_RTMagneticShield.label>
+	<ResearchProject_RTMagneticShield.description>Permet la construction d'un bouclier magnétique afin de protéger les appareils électriques de la colonie des éruptions solaires.
+
+Lorsque inactif, le bouclier requiert très peu d'énergie pour maintenir ses circuits de détection, toujours prêt à s'activer au moment où une éruption solaire arriverait. Si cela arrive, le bouclier commencera à puiser jusqu'à 25kWt de puissance afin de former un semblant de magnétosphère localisée, neutralisant l'effet qu'une éruption solaire aurait eu sur l'électronique de la colonie. La zone d'effet de cette protection est suffisante pour couvrir la colonie et même un peu plus.
+
+Même réduites par le bouclier, les flutctuations électromagnétiques excessives causées par l'éruption rendront les appareils plus sensibles comme la console de communication inutilisables.</ResearchProject_RTMagneticShield.description>
+
+</LanguageData>
