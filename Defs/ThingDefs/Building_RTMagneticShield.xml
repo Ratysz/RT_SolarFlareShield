@@ -67,7 +67,7 @@
 			<li Class="CompProperties_Flickable" />
 			<li Class="RT_SolarFlareShield.CompProperties_RTSolarFlareShield">
 				<shieldingPowerDrain>25000</shieldingPowerDrain>
-				<heatingPerTick>0.2</heatingPerTick>
+				<heatingPerTick>0.5</heatingPerTick>
 				<rotatorSpeedIdle>0.5</rotatorSpeedIdle>
 				<rotatorSpeedActive>20.0</rotatorSpeedActive>
 			</li>
