@@ -85,11 +85,7 @@ namespace RT_SolarFlareShield
 					{
 						compPowerTrader.PowerOutput = -properties.shieldingPowerDrain;
 						rotatorAngle += properties.rotatorSpeedActive * tickAmount;
-						RoomGroup roomGroup = parent.GetRoomGroup();
-						if (roomGroup != null && !roomGroup.UsesOutdoorTemperature)
-						{
-							roomGroup.Temperature += properties.heatingPerTick * tickAmount;
-						}
+						GenTemperature.PushHeat(parent.Position, parent.Map, properties.heatingPerTick * tickAmount);
 						if ((Find.TickManager.TicksGame) % (5 * tickAmount) == 0)
 						{
 							foreach (Thing building in parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
