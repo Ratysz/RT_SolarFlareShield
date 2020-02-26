@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System.Reflection;
 using UnityEngine;
 using Verse;
@@ -9,7 +9,7 @@ namespace RT_SolarFlareShield
 	{
 		public Mod(ModContentPack content) : base(content)
 		{
-			var harmony = HarmonyInstance.Create("io.github.ratysz.rt_solarflareshield");
+			var harmony = new Harmony("io.github.ratysz.rt_solarflareshield");
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
 		}
 	}

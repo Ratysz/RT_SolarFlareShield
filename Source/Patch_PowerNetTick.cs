@@ -1,17 +1,14 @@
-﻿using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Harmony;
 using RimWorld;
-using Harmony;
+using System.Collections.Generic;
+using System.Reflection;
 using Verse;
-using UnityEngine;
 
 namespace RT_SolarFlareShield
 {
 	[HarmonyPatch(typeof(PowerNet))]
 	[HarmonyPatch("PowerNetTick")]
-	static class Patch_PowerNetTick
+	internal static class Patch_PowerNetTick
 	{
 		public static IEnumerable<CodeInstruction> Transpiler(
 			MethodBase original,
