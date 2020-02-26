@@ -19,11 +19,19 @@ namespace RT_SolarFlareShield
 
 	public class CompRTSolarFlareShield : ThingComp
 	{
-		public CompProperties_RTSolarFlareShield properties
+		public CompProperties_RTSolarFlareShield Properties
 		{
 			get
 			{
 				return (CompProperties_RTSolarFlareShield)props;
+			}
+		}
+
+		public bool Active
+		{
+			get
+			{
+				return compPowerTrader == null || compPowerTrader.PowerOn;
 			}
 		}
 
@@ -40,13 +48,12 @@ namespace RT_SolarFlareShield
 				Log.Error("[RT Solar Flare Shield]: Could not get CompPowerTrader of " + parent);
 			}
 			coordinator = parent.Map.GetShieldCoordinator();
-			coordinator.hasAnyShield = true;
+			coordinator.shields.Add(this);
 		}
 
 		public override void PostDeSpawn(Map map)
 		{
-			coordinator.hasAnyShield = false;
-			coordinator.hasActiveShield = false;
+			coordinator.shields.Remove(this);
 			base.PostDeSpawn(map);
 		}
 
@@ -76,16 +83,19 @@ namespace RT_SolarFlareShield
 		{
 			if ((Find.TickManager.TicksGame) % tickAmount == 0)
 			{
-				if (compPowerTrader == null || compPowerTrader.PowerOn)
+				if (Active)
 				{
-					coordinator.hasActiveShield = true;
 					GameCondition gameCondition =
 						Find.World.GameConditionManager.GetActiveCondition(GameConditionDefOf.SolarFlare);
 					if (gameCondition != null)
 					{
-						compPowerTrader.PowerOutput = -properties.shieldingPowerDrain;
-						rotatorAngle += properties.rotatorSpeedActive * tickAmount;
-						GenTemperature.PushHeat(parent.Position, parent.Map, properties.heatingPerTick * tickAmount);
+						compPowerTrader.PowerOutput = -Properties.shieldingPowerDrain;
+						rotatorAngle += Properties.rotatorSpeedActive * tickAmount;
+						var map = parent.Map;
+						if (map != null)
+						{
+							GenTemperature.PushHeat(parent.Position, parent.Map, Properties.heatingPerTick * tickAmount);
+						}
 						if ((Find.TickManager.TicksGame) % (5 * tickAmount) == 0)
 						{
 							foreach (Thing building in parent.Map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
@@ -104,12 +114,8 @@ namespace RT_SolarFlareShield
 					else
 					{
 						compPowerTrader.PowerOutput = -compPowerTrader.Props.basePowerConsumption;
-						rotatorAngle += properties.rotatorSpeedIdle * tickAmount;
+						rotatorAngle += Properties.rotatorSpeedIdle * tickAmount;
 					}
-				}
-				else
-				{
-					coordinator.hasActiveShield = false;
 				}
 			}
 		}

@@ -73,9 +73,6 @@
 			</li>
 			<li Class="CompProperties_Breakdownable"/>
 		</comps>
-		<placeWorkers>
-			<li>RT_SolarFlareShield.PlaceWorker_RTOnlyOneShieldOnMap</li>
-		</placeWorkers>
 	</ThingDef>
 
 </Defs>

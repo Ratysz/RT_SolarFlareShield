@@ -20,7 +20,7 @@ namespace RT_SolarFlareShield
 
 		public static bool ElectricityDisabled(this GameConditionManager instance)
 		{
-			return instance.ElectricityDisabled && !instance.ownerMap.GetShieldCoordinator().hasActiveShield;
+			return instance.ElectricityDisabled && !instance.ownerMap.GetShieldCoordinator().HasActiveShield();
 		}
 	}
 }

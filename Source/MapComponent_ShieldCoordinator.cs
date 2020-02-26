@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using System.Collections.Generic;
+using Verse;
 
 namespace RT_SolarFlareShield
 {
@@ -8,7 +9,17 @@ namespace RT_SolarFlareShield
 		{
 		}
 
-		public bool hasAnyShield = false;
-		public bool hasActiveShield = false;
+		public List<CompRTSolarFlareShield> shields = new List<CompRTSolarFlareShield>();
+
+		public bool HasActiveShield()
+		{
+			foreach (var shield in shields) {
+				if (shield.Active)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }
