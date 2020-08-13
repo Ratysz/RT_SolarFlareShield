@@ -17,7 +17,7 @@
 			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
 		</li>
 	</modDependencies>
-	<description>Researchable (RT Mods research tab) magnetic shield to protect colony electronics from solar flares. The device heats up considerably while engaged, so plan accordingly!
+	<description>Researchable (RT Mods research tab) magnetic shield to protect colony electronics from EMI and solar flares. The device heats up considerably while engaged, so plan accordingly!
 
 Does not require a new colony to add or remove (might throw a one-time error).
 
