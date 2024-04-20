@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Building_RTMagneticShield.label>магнитный щит</Building_RTMagneticShield.label>
+  <Building_RTMagneticShield.description>Включается автоматически, чтобы защитить всю колонию от солнечной вспышки. Потребляемая мощность огромна, а при работе выделяется большое количество тепла.</Building_RTMagneticShield.description>
+  <Building_RTMagneticShield_Blueprint.label>магнитный щит (проект)</Building_RTMagneticShield_Blueprint.label>
+  <Building_RTMagneticShield_Blueprint_Install.label>магнитный щит (проект)</Building_RTMagneticShield_Blueprint_Install.label>
+  <Building_RTMagneticShield_Frame.label>магнитный щит (в процессе сборки)</Building_RTMagneticShield_Frame.label>
+  <Building_RTMagneticShield_Frame.description>Включается автоматически, чтобы защитить всю колонию от солнечной вспышки. Потребляемая мощность огромна, а при работе выделяется большое количество тепла.</Building_RTMagneticShield_Frame.description>
+
+
+</LanguageData>
